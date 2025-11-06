@@ -1,0 +1,23 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# AWS
+.aws/
+credentials
+
+# Logs
+*.log
+results/
+
+# Config files
+config.env
+.env
+terraform.tfvars
