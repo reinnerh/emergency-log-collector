@@ -10,7 +10,7 @@ def emergency_download(instance_id):
     """Download ultra-rápido de logs de uma instância específica"""
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     
-    logging.info(f"🚨 EMERGÊNCIA: Coletando logs de {instance_id}")
+    logging.info(f" EMERGÊNCIA: Coletando logs de {instance_id}")
     
     # Comando otimizado para velocidade
     command = f"""
@@ -63,7 +63,7 @@ def emergency_download(instance_id):
             with open(filename, 'w') as f:
                 f.write(log_content)
             
-            logging.info(f"✅ SUCESSO! Logs salvos em: {filename}")
+            logging.info(f" SUCESSO! Logs salvos em: {filename}")
             
             # Mostra preview dos logs
             print("\\n" + "="*50)
@@ -72,17 +72,17 @@ def emergency_download(instance_id):
             print(log_content[:1000] + "..." if len(log_content) > 1000 else log_content)
             
         else:
-            logging.error(f"❌ FALHOU: {result.get('StandardErrorContent', 'Erro desconhecido')}")
+            logging.error(f" FALHOU: {result.get('StandardErrorContent', 'Erro desconhecido')}")
             
     except Exception as e:
-        logging.error(f"❌ ERRO: {e}")
+        logging.error(f" ERRO: {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("🚨 USO EMERGÊNCIA:")
+        print(" USO EMERGÊNCIA:")
         print("  python3 emergency_logs.py i-1234567890abcdef0")
         print("\\nPara listar instâncias do ASG:")
-        print("  aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names 'Plataforma Jornada' --query 'AutoScalingGroups[0].Instances[?LifecycleState==`InService`].InstanceId' --output text")
+        print("  aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names 'asg-name' --query 'AutoScalingGroups[0].Instances[?LifecycleState==`InService`].InstanceId' --output text")
         sys.exit(1)
     
     emergency_download(sys.argv[1])
