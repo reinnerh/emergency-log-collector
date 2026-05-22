@@ -7,7 +7,6 @@ from datetime import datetime
 def lambda_handler(event, context):
     """
     Lambda function para coletar logs de emergência antes da terminação de instâncias
-    Baseado no nosso trabalho anterior de monitoramento PHP-FPM
     """
     
     # Clientes AWS
@@ -47,7 +46,7 @@ def lambda_handler(event, context):
                                 instance_id, lifecycle_action_token, 'CONTINUE')
         return {'statusCode': 500, 'body': 'Erro ao verificar instância'}
     
-    # Script de coleta de emergência (baseado no nosso monitor_php_fpm.py)
+    # Script de coleta de emergência (baseado no monitor_php_fpm.py)
     emergency_script = """#!/bin/bash
 set -e
 
